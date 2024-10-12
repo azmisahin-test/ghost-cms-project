@@ -4,24 +4,31 @@ services:
   ghost:
     image: ghost:latest
     restart: always
+    depends_on:
+      - db
+    ports:
+      - "8080:2368"
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ghost_password
+      database__connection__database: ghost
+      url: http://localhost:8080
     volumes:
       - ghost_data:/var/lib/ghost/content
-    environment:
-      - url=http://localhost:2368
-    ports:
-      - "2368:2368"
 
-  mysql:
-    image: mysql:5.7
+  db:
+    image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ghost_root_password
       MYSQL_DATABASE: ghost
       MYSQL_USER: ghost
       MYSQL_PASSWORD: ghost_password
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
 volumes:
   ghost_data:
-  mysql_data:
+  db_data:
