@@ -47,3 +47,13 @@ MYSQL_PASSWORD: The password for the Ghost database user.
 Docker Compose is ideal for local development and testing.
 
 Docker Stack is suited for production environments and allows for distributed deployments across multiple hosts.
+
+
+## Accessing Your Ghost Site
+After setting up your Ghost CMS, you can access your site at the following URL:
+
+Site URL: http://localhost:8080/
+
+You can log in to the admin panel by appending /ghost to the URL:
+
+Admin Panel URL: http://localhost:8080/ghost
